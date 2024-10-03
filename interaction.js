@@ -18,7 +18,7 @@ function DnD(canvas, interactor) {
 
     console.log(getMousePosition(canvas,evt));
   }
-  
+
   this.deplacement = function(evt){
     if (this.isActive){
       console.log("Deplacement: ", getMousePosition(canvas,evt));
