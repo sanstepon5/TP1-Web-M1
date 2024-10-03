@@ -12,6 +12,15 @@ function DnD(canvas, interactor) {
 	// Associer les fonctions précédentes aux évènements du canvas.
 };
 
+DnD.prototype.pression = function(evt){
+
+}
+DnD.prototype.deplacement = function(evt){
+
+}
+DnD.prototype.relachement = function(evt){
+
+}
 
 // Place le point de l'événement evt relativement à la position du canvas.
 function getMousePosition(canvas, evt) {
