@@ -23,3 +23,29 @@ function Rectangle(pointHautGaucheX, pointHautGaucheY, largeur, hauteur, epaisse
     this.hauteur = hauteur;
 }
 Rectangle.prototype = new Forme();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function drawing(){
+    this.formesArr = new Array();
+
+    this.addForme = function(forme){
+        this.formesArr.push(forme);
+    }
+}
