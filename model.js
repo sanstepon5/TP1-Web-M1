@@ -1,51 +1,62 @@
 // Implémenter ici les 4 classes du modèle.
 // N'oubliez pas l'héritage !
 
-function Forme(couleur, epaisseur) {
+function Forme(startX, StartY, couleur, epaisseur) {
+    this.startX = startX;
+    this.startY = StartY;
     this.couleur = couleur;
     this.epaisseur = epaisseur;
+    this.getInitX = function (){
+        return this.startX;
+    }
+    this.getInitY = function (){
+        return this.startY;
+    }
+    this.couleur = function (){
+        return this.couleur;
+    }
+    this.epaisseur = function (){
+        return this.epaisseur;
+    }
 }
 
-function Line(pointAx, pointAy, pointBx, pointBy, epaisseur, couleur) {
-    Forme.call(this, couleur, epaisseur);
+function Line(startX, startY, epaisseur, couleur, endX, endY) {
+    Forme.call(this, startX, startY, couleur, epaisseur);
 
-    this.pointAx = pointAx;
-    this.pointB = pointB;
+    this.endX = endX;
+    this.endY = endY;
+    this.getEndX = function (){
+        return this.endX;
+    }
+    this.getEndY = function (){
+        return this.endY;
+    }
 }
 Line.prototype = new Forme();
 
-function Rectangle(pointHautGaucheX, pointHautGaucheY, largeur, hauteur, epaisseur, couleur) {
-    Forme.call(this, couleur, epaisseur)
+function Rectangle(startX,startY,largeur, hauteur, epaisseur, couleur) {
+    Forme.call(this,startX,startY, couleur, epaisseur)
 
-    this.pointHautGaucheX = pointHautGaucheX;
-    this.pointHautGaucheY = pointHautGaucheY;
     this.largeur = largeur;
     this.hauteur = hauteur;
+
+    this.getHauteur = function (){
+        return this.hauteur;
+    }
+    this.getLargeur = function (){
+        return this.largeur;
+    }
+
 }
 Rectangle.prototype = new Forme();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function drawing(){
-    this.formesArr = new Array();
+function Drawing(){
+    this.formesArr = [];
 
     this.addForme = function(forme){
         this.formesArr.push(forme);
+    }
+    this.getForms = function(){
+        return this.formesArr;
     }
 }
