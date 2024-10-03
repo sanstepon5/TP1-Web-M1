@@ -17,20 +17,20 @@ function DnD(canvas, interactor) {
     this.isActive = true;
 
     console.log(getMousePosition(canvas,evt));
-  }
+  }.bind(this);
 
   this.deplacement = function(evt){
     if (this.isActive){
       console.log("Deplacement: ", getMousePosition(canvas,evt));
     }
-  }
+  }.bind(this);
 
   this.relachement = function(evt){
     this.finalPosDnD_x = evt.x;
     this.finalPosDnD_y = evt.y;
     this.isActive = false;
     console.log(getMousePosition(canvas,evt));
-}
+  }.bind(this);
 
 	// Associer les fonctions précédentes aux évènements du canvas.
   canvas.addEventListener('mousedown', this.pression, false);
