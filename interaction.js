@@ -11,26 +11,33 @@ function DnD(canvas, interactor) {
     this.canvasDnD= canvas;
 
 	// Developper les 3 fonctions gérant les événements
-
-	// Associer les fonctions précédentes aux évènements du canvas.
-};
-
-DnD.prototype.pression = function(evt){
+  this.pression = function(evt){
     this.initPosDnD_x = evt.x;
     this.initPosDnD_y = evt.y;
     this.isActive = true;
 
-    console.log(getMousePosition(this.canvasDnD,evt));
-}
-DnD.prototype.deplacement = function(evt){
-    getMousePosition(this.canvasDnD,evt);
-}
-DnD.prototype.relachement = function(evt){
+    console.log(getMousePosition(canvas,evt));
+  }
+  
+  this.deplacement = function(evt){
+    if (this.isActive){
+      console.log("Deplacement: ", getMousePosition(canvas,evt));
+    }
+  }
+
+  this.relachement = function(evt){
     this.finalPosDnD_x = evt.x;
     this.finalPosDnD_y = evt.y;
     this.isActive = false;
-    getMousePosition(this.canvasDnD,evt);
+    console.log(getMousePosition(canvas,evt));
 }
+
+	// Associer les fonctions précédentes aux évènements du canvas.
+  canvas.addEventListener('mousedown', this.pression, false);
+  canvas.addEventListener('mousemove', this.deplacement, false);
+  canvas.addEventListener('mouseup', this.relachement, false);
+};
+
 
 
 
