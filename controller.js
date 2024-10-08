@@ -26,25 +26,26 @@ function Pencil(ctx, drawing, canvas) {
 	this.onInteractionStart = function (dnd){
 		console.log("On inter start", this.currEditingMode)
 		if(this.currEditingMode === 1) {
-			this.currentShape = new Line(dnd.initPosDnD_x, dnd.initPosDnD_y, 0, 0, this.currLineWidth, this.currColour);
+			this.currentShape = new Line(dnd.initPosDnD_x, dnd.initPosDnD_y, this.currLineWidth, this.currColour,dnd.finalPosDnD_x,dnd.finalPosDnD_y);
 		}
 		else {
-			this.currentShape = new Rectangle(dnd.initPosDnD_x, dnd.initPosDnD_y, 0, 0, this.currLineWidth, this.currColour);
+			this.currentShape = new Rectangle(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,dnd.finalPosDnD_x,dnd.finalPosDnD_y);
 		}
+		drawing.paint(ctx);
 		this.currentShape.paint(ctx);
 	}.bind(this);
 
 	this.onInteractionUpdate = function (dnd){
 		console.log("On inter update", this.currEditingMode)
 		if(this.currEditingMode === 1) {
-			this.currentShape.largeur = dnd.finalPosDnD_x;
-			this.currentShape.hauteur = dnd.finalPosDnD_y;
+			this.currentShape = new Line(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
+				dnd.finalPosDnD_x - dnd.initPosDnD_x,dnd.finalPosDnD_y - dnd.initPosDnD_y);
 		}
 		else{
-			this.currentShape.endX = dnd.finalPosDnD_x;
-			this.currentShape.endY = dnd.finalPosDnD_y;
-
+			this.currentShape = new Rectangle(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
+				dnd.finalPosDnD_x - dnd.initPosDnD_x,dnd.finalPosDnD_y - dnd.initPosDnD_y);
 		}
+		drawing.paint(ctx);
 		this.currentShape.paint(ctx);
 	}.bind(this);
 
@@ -52,14 +53,18 @@ function Pencil(ctx, drawing, canvas) {
 		console.log("On inter end", this.currEditingMode)
 
 		if(this.currentShape === 1){
-			this.currentShape.largeur = dnd.finalPosDnD_x;
-			this.currentShape.hauteur = dnd.finalPosDnD_y;
+			this.currentShape = new Line(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
+				dnd.finalPosDnD_x - dnd.initPosDnD_x,dnd.finalPosDnD_y - dnd.initPosDnD_y);
 		}
 		else{
-			this.currentShape.endX = dnd.finalPosDnD_x;
-			this.currentShape.endY = dnd.finalPosDnD_y;
+			this.currentShape = new Rectangle(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
+				dnd.finalPosDnD_x - dnd.initPosDnD_x,dnd.finalPosDnD_y - dnd.initPosDnD_y);
 		}
+
+		drawing.paint(ctx);
 		this.currentShape.paint(ctx);
+		drawing.formesArr.push(this.currentShape);
+
 	}.bind(this);
 }
 

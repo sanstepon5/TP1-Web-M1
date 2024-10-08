@@ -1,5 +1,4 @@
 Rectangle.prototype.paint = function(ctx) {
-    ctx.strokeStyle = this.couleur
     ctx.strokeStyle = this.couleur;
     ctx.lineWidth = this.epaisseur;
     ctx.beginPath();
@@ -9,7 +8,6 @@ Rectangle.prototype.paint = function(ctx) {
 }
 
 Line.prototype.paint = function(ctx) {
-    ctx.strokeStyle = this.couleur
     ctx.strokeStyle = this.couleur;
     ctx.lineWidth = this.epaisseur;
     ctx.beginPath();

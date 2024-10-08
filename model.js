@@ -28,7 +28,7 @@ function Line(startX, startY, epaisseur, couleur, endX, endY) {
 }
 Line.prototype = new Forme();
 
-function Rectangle(startX,startY,largeur, hauteur, epaisseur, couleur) {
+function Rectangle(startX,startY,epaisseur, couleur, largeur, hauteur) {
     Forme.call(this,startX,startY, couleur, epaisseur)
 
     this.largeur = largeur;
