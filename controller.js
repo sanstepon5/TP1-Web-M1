@@ -24,8 +24,7 @@ function Pencil(ctx, drawing, canvas) {
 
 	// Implémentez ici les 3 fonctions onInteractionStart, onInteractionUpdate et onInteractionEnd
 	this.onInteractionStart = function (dnd){
-		console.log("On inter start", this.currEditingMode)
-		if(this.currEditingMode === 1) {
+		if(this.currEditingMode === editingMode.line) {
 			this.currentShape = new Line(dnd.initPosDnD_x, dnd.initPosDnD_y, this.currLineWidth, this.currColour,dnd.finalPosDnD_x,dnd.finalPosDnD_y);
 		}
 		else {
@@ -36,10 +35,9 @@ function Pencil(ctx, drawing, canvas) {
 	}.bind(this);
 
 	this.onInteractionUpdate = function (dnd){
-		console.log("On inter update", this.currEditingMode)
-		if(this.currEditingMode === 1) {
+		if(this.currEditingMode === editingMode.line) {
 			this.currentShape = new Line(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
-				dnd.finalPosDnD_x - dnd.initPosDnD_x,dnd.finalPosDnD_y - dnd.initPosDnD_y);
+				dnd.finalPosDnD_x, dnd.finalPosDnD_y);
 		}
 		else{
 			this.currentShape = new Rectangle(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
@@ -50,11 +48,9 @@ function Pencil(ctx, drawing, canvas) {
 	}.bind(this);
 
 	this.onInteractionEnd = function (dnd){
-		console.log("On inter end", this.currEditingMode)
-
-		if(this.currentShape === 1){
+		if(this.currEditingMode === editingMode.line){
 			this.currentShape = new Line(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
-				dnd.finalPosDnD_x - dnd.initPosDnD_x,dnd.finalPosDnD_y - dnd.initPosDnD_y);
+				dnd.finalPosDnD_x, dnd.finalPosDnD_y);
 		}
 		else{
 			this.currentShape = new Rectangle(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
