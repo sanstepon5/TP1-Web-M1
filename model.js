@@ -45,12 +45,5 @@ function Rectangle(startX,startY,epaisseur, couleur, largeur, hauteur) {
 Rectangle.prototype = new Forme();
 
 function Drawing(){
-    this.formesArr = [];
-
-    this.addForme = function(forme){
-        this.formesArr.push(forme);
-    }
-    this.getForms = function(){
-        return this.formesArr;
-    }
+    this.shapeArr = new Map();
 }

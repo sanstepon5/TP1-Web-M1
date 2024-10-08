@@ -68,9 +68,28 @@ function Pencil(ctx, drawing, canvas) {
 
 		drawing.paint(ctx);
 		this.currentShape.paint(ctx);
-		drawing.formesArr.push(this.currentShape);
+		let newId = generateUniqueId();
+		drawing.shapeArr.set(newId,this.currentShape);
+
+		updateShapeList(newId, this.currentShape, this.currEditingMode);
 
 	}.bind(this);
 }
 
 
+
+//------------------- generating id for the buttons deleting the shapes-----
+
+	let generatedIds = new Set();
+
+	function generateUniqueId() {
+		let id;
+		do {
+			let timestamp = Date.now().toString(36).slice(-8);
+			let random = Math.floor(Math.random() * 1000000).toString(36).padStart(6, '0');
+			id = `${timestamp}-${random}`;
+		} while (generatedIds.has(id));
+
+		generatedIds.add(id);
+		return id;
+	}
