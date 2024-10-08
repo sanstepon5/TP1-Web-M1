@@ -44,7 +44,7 @@ function DnD(canvas, interactor) {
   canvas.addEventListener('mousedown', this.pression, false);
   canvas.addEventListener('mousemove', this.deplacement, false);
   canvas.addEventListener('mouseup', this.relachement, false);
-};
+}
 
 
 
@@ -55,7 +55,6 @@ function getMousePosition(canvas, evt) {
     x: evt.clientX - rect.left,
     y: evt.clientY - rect.top
   };
-};
-
+}
 
 
