@@ -1,16 +1,23 @@
 Rectangle.prototype.paint = function(ctx) {
     //TODO Manager color
+    ctx.strokeStyle = this.couleur;
+    ctx.lineWidth = this.epaisseur;
     ctx.beginPath();
     ctx.rect(this.getInitX(), this.getInitY(), this.getLargeur(),this.getHauteur());
     ctx.stroke();
+
 }
 
 Line.prototype.paint = function(ctx) {
     //TODO Manager color
+    ctx.strokeStyle = this.couleur;
+    ctx.lineWidth = this.epaisseur;
     ctx.beginPath();
+
     ctx.moveTo(this.getInitX(), this.getInitY());
     ctx.lineTo(this.getEndX(), this.getEndY());
     ctx.stroke();
+
 };
 
 Drawing.prototype.paint = function(ctx) {

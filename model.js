@@ -12,12 +12,6 @@ function Forme(startX, StartY, couleur, epaisseur) {
     this.getInitY = function (){
         return this.startY;
     }
-    this.couleur = function (){
-        return this.couleur;
-    }
-    this.epaisseur = function (){
-        return this.epaisseur;
-    }
 }
 
 function Line(startX, startY, epaisseur, couleur, endX, endY) {

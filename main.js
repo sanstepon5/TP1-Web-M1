@@ -12,7 +12,7 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);  // now fill the canvas
 /////
 
 // Code temporaire pour tester l'affiche de la vue
-var rec = new Rectangle(10, 20, 50, 100, 5, '#00CCC0');
+var rec = new Rectangle(10, 20, 50, 100, 50, '#000000');
 rec.paint(ctx);
 var ligne = new Line(50, 50, 5, '#00CCC0', 100, 100);
 ligne.paint(ctx);
