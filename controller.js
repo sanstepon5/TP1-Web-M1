@@ -12,12 +12,20 @@ function Pencil(ctx, drawing, canvas) {
 
 	document.getElementById('butRect').onclick = (_) => this.onRectButtonClick()
 	document.getElementById('butLine').onclick = (_) => this.onLineButtonClick()
+	document.getElementById('colour').onchange = (_) => this.onColorChange()
+	document.getElementById('spinnerWidth').onchange = (_) => this.onWidthSpinnerChange()
 
 	this.onRectButtonClick = function () {
 		this.currEditingMode = editingMode.rect;
 	}
 	this.onLineButtonClick = function () {
 		this.currEditingMode = editingMode.line;
+	}
+	this.onColorChange = function () {
+		this.currColour = document.getElementById('colour').value;
+	}
+	this.onWidthSpinnerChange = function () {
+		this.currLineWidth = document.getElementById('spinnerWidth').value;
 	}
 
 	new DnD(canvas, this);
@@ -35,6 +43,7 @@ function Pencil(ctx, drawing, canvas) {
 	}.bind(this);
 
 	this.onInteractionUpdate = function (dnd){
+		console.log(this.currColour)
 		if(this.currEditingMode === editingMode.line) {
 			this.currentShape = new Line(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
 				dnd.finalPosDnD_x, dnd.finalPosDnD_y);
