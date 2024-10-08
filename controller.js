@@ -33,10 +33,10 @@ function Pencil(ctx, drawing, canvas) {
 	// Implémentez ici les 3 fonctions onInteractionStart, onInteractionUpdate et onInteractionEnd
 	this.onInteractionStart = function (dnd){
 		if(this.currEditingMode === editingMode.line) {
-			this.currentShape = new Line(dnd.initPosDnD_x, dnd.initPosDnD_y, this.currLineWidth, this.currColour,dnd.finalPosDnD_x,dnd.finalPosDnD_y);
+			this.currentShape = new Line();
 		}
 		else {
-			this.currentShape = new Rectangle(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,dnd.finalPosDnD_x,dnd.finalPosDnD_y);
+			this.currentShape = new Rectangle();
 		}
 		drawing.paint(ctx);
 		this.currentShape.paint(ctx);
