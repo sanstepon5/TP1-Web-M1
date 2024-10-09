@@ -72,10 +72,18 @@ function Pencil(ctx, drawing, canvas) {
 		drawing.shapeArr.set(newId,this.currentShape);
 
 		updateShapeList(newId, this.currentShape, this.currEditingMode);
+		//adding the onclick
+		document.getElementById("liRemove" + newId).onclick = (event) =>
+			remove(drawing,event.currentTarget.id.substring(8),ctx,canvas)
 
 	}.bind(this);
 }
 
+function remove (drawing,id,ctx,canvas) {
+	drawing.shapeArr.delete(id);
+	document.getElementById('liRemove' + id).remove()
+	drawing.paint(ctx,canvas);//erase the fig
+}
 
 
 //------------------- generating id for the buttons deleting the shapes-----

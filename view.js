@@ -55,4 +55,6 @@ function addShapeInHtml(shape, index, currEditingMode) {
     return innerHtml;
 }
 
+
+
 // Implémenter ici les fonctions paint à ajouter dans chacune des classes du modèle.
