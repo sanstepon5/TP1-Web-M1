@@ -18,6 +18,7 @@ var rec = new Rectangle(10, 20, 50, 100, 5, '#00CCC0');
 rec.paint(ctx);
 var ligne = new Line(50, 50, 5, '#00CCC0', 100, 100);
 ligne.paint(ctx);
+var ellipse = new Ellipse(100, 100, 50, 75, Math.PI / 4, 0, 2 * Math.PI);
 // tester également Dessin.
 ////
 

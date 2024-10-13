@@ -1,5 +1,5 @@
 
-	var editingMode = { rect: 0, line: 1 };
+	var editingMode = { rect: 0, line: 1, ellipse: 2 };
 
 function Pencil(ctx, drawing, canvas) {
 	this.currEditingMode = editingMode.line;
@@ -12,6 +12,7 @@ function Pencil(ctx, drawing, canvas) {
 
 	document.getElementById('butRect').onclick = (_) => this.onRectButtonClick()
 	document.getElementById('butLine').onclick = (_) => this.onLineButtonClick()
+	document.getElementById('butEllipse').onclick = (_) => this.onEllipseButtonClick()
 	document.getElementById('colour').onchange = (_) => this.onColorChange()
 	document.getElementById('spinnerWidth').onchange = (_) => this.onWidthSpinnerChange()
 
@@ -20,6 +21,9 @@ function Pencil(ctx, drawing, canvas) {
 	}
 	this.onLineButtonClick = function () {
 		this.currEditingMode = editingMode.line;
+	}
+	this.onEllipseButtonClick = function () {
+		this.currEditingMode = editingMode.ellipse;
 	}
 	this.onColorChange = function () {
 		this.currColour = document.getElementById('colour').value;
@@ -35,8 +39,11 @@ function Pencil(ctx, drawing, canvas) {
 		if(this.currEditingMode === editingMode.line) {
 			this.currentShape = new Line();
 		}
-		else {
+		else if(this.currEditingMode === editingMode.rect) {
 			this.currentShape = new Rectangle();
+		}
+		else if(this.currEditingMode === editingMode.ellipse) {
+			this.currentShape = new Ellipse();
 		}
 		drawing.paint(ctx);
 		this.currentShape.paint(ctx);
@@ -48,9 +55,14 @@ function Pencil(ctx, drawing, canvas) {
 			this.currentShape = new Line(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
 				dnd.finalPosDnD_x, dnd.finalPosDnD_y);
 		}
-		else{
-			this.currentShape = new Rectangle(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
-				dnd.finalPosDnD_x - dnd.initPosDnD_x,dnd.finalPosDnD_y - dnd.initPosDnD_y);
+		else if(this.currEditingMode === editingMode.rect) {
+			this.currentShape = new Rectangle(dnd.initPosDnD_x, dnd.initPosDnD_y, this.currLineWidth, this.currColour,
+				dnd.finalPosDnD_x - dnd.initPosDnD_x, dnd.finalPosDnD_y - dnd.initPosDnD_y);
+
+		}
+		else if(this.currEditingMode === editingMode.ellipse) {
+			this.currentShape = new Ellipse(dnd.initPosDnD_x,dnd.initPosDnD_y, this.currLineWidth, this.currColour,
+				dnd.finalPosDnD_x, dnd.finalPosDnD_y,Math.PI / 4, 0 , 2 * Math.PI);
 		}
 		drawing.paint(ctx);
 		this.currentShape.paint(ctx);
@@ -61,9 +73,13 @@ function Pencil(ctx, drawing, canvas) {
 			this.currentShape = new Line(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
 				dnd.finalPosDnD_x, dnd.finalPosDnD_y);
 		}
-		else{
+		else if (this.currEditingMode === editingMode.rect){
 			this.currentShape = new Rectangle(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
 				dnd.finalPosDnD_x - dnd.initPosDnD_x,dnd.finalPosDnD_y - dnd.initPosDnD_y);
+		}
+		else if(this.currEditingMode === editingMode.ellipse){
+			this.currentShape = new Ellipse(dnd.initPosDnD_x,dnd.initPosDnD_y, this.currLineWidth, this.currColour,
+				dnd.finalPosDnD_x, dnd.finalPosDnD_y,Math.PI / 4, 0 , 2 * Math.PI);
 		}
 
 		drawing.paint(ctx);

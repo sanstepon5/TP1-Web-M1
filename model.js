@@ -44,6 +44,17 @@ function Rectangle(startX,startY,epaisseur, couleur, largeur, hauteur) {
 }
 Rectangle.prototype = new Forme();
 
+function Ellipse(startX, startY, couleur, epaisseur, radiusX, radiusY, rotation,startAngle, endAngle) {
+    Forme.call(this,startX, startY, couleur, epaisseur)
+    this.radiusX = radiusX;
+    this.radiusY = radiusY;
+    this.rotation = rotation;
+    this.startAngle = startAngle;
+    this.endAngle = endAngle;
+
+}
+Ellipse.prototype = new Forme();
+
 function Drawing(){
     this.shapeArr = new Map();
 }

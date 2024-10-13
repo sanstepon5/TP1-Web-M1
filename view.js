@@ -17,6 +17,15 @@ Line.prototype.paint = function(ctx) {
     ctx.stroke();
 
 };
+Ellipse.prototype.paint = function(ctx){
+    ctx.strokeStyle = this.couleur;
+    ctx.lineWidth = this.epaisseur;
+    ctx.beginPath();
+    ctx.ellipse(this.startX,this.startY,this.radiusX,this.radiusY,
+        this.rotation,this.startAngle,this.endAngle);
+
+    ctx.stroke();
+}
 
 Drawing.prototype.paint = function(ctx) {
     ctx.fillStyle = '#F0F0F0'; // set canvas' background color
@@ -45,6 +54,9 @@ function addShapeInHtml(shape, index, currEditingMode) {
         innerHtml += '<label >□ Rectangle</label>';
     } else if (currEditingMode === 1) {
         innerHtml += '<label> \ Line</label>';
+    }
+    else if (currEditingMode === 2){
+        innerHtml += '<label> \ Ellipse</label>';
     }
 
     innerHtml += '<button type="button" class="btn btn-default">';
