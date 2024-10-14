@@ -62,7 +62,7 @@ function Pencil(ctx, drawing, canvas) {
 		}
 		else if(this.currEditingMode === editingMode.ellipse) {
 			this.currentShape = new Ellipse(dnd.initPosDnD_x,dnd.initPosDnD_y, this.currLineWidth, this.currColour,
-				dnd.finalPosDnD_x, dnd.finalPosDnD_y,Math.PI / 4, 0 , 2 * Math.PI);
+				dnd.finalPosDnD_x -dnd.initPosDnD_x, dnd.finalPosDnD_y - dnd.initPosDnD_y,Math.PI / 4, 0 , 2 * Math.PI);
 		}
 		drawing.paint(ctx);
 		this.currentShape.paint(ctx);
@@ -79,7 +79,7 @@ function Pencil(ctx, drawing, canvas) {
 		}
 		else if(this.currEditingMode === editingMode.ellipse){
 			this.currentShape = new Ellipse(dnd.initPosDnD_x,dnd.initPosDnD_y, this.currLineWidth, this.currColour,
-				dnd.finalPosDnD_x, dnd.finalPosDnD_y,Math.PI / 4, 0 , 2 * Math.PI);
+				dnd.finalPosDnD_x -dnd.initPosDnD_x, dnd.finalPosDnD_y - dnd.initPosDnD_y,Math.PI / 4, 0 , 2 * Math.PI);
 		}
 
 		drawing.paint(ctx);
