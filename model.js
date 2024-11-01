@@ -1,16 +1,19 @@
-// Implémenter ici les 4 classes du modèle.
-// N'oubliez pas l'héritage !
-
 function Forme(startX, StartY, couleur, epaisseur) {
     this.startX = startX;
     this.startY = StartY;
     this.couleur = couleur;
     this.epaisseur = epaisseur;
-    this.getInitX = function (){
+    this.getStartX = function (){
         return this.startX;
     }
-    this.getInitY = function (){
+    this.getStartY = function (){
         return this.startY;
+    }
+    this.getCouleur = function() {
+        return this.couleur;
+    }
+    this.getEpaisseur = function() {
+        return this.epaisseur;
     }
 }
 
@@ -51,6 +54,21 @@ function Ellipse(startX, startY, couleur, epaisseur, radiusX, radiusY, rotation,
     this.rotation = rotation;
     this.startAngle = startAngle;
     this.endAngle = endAngle;
+    this.getRadiusX = function() {
+        return this.radiusX;
+    }
+    this.getRadiusY = function() {
+        return this.radiusY;
+    }
+    this.getRotation = function() {
+        return this.rotation;
+    }
+    this.getStartAngle = function() {
+        return this.startAngle;
+    }
+    this.getEndAngle = function() {
+        return this.endAngle;
+    }
 
 }
 Ellipse.prototype = new Forme();

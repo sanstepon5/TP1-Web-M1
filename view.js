@@ -1,31 +1,29 @@
 Rectangle.prototype.paint = function(ctx) {
-    ctx.strokeStyle = this.couleur;
-    ctx.lineWidth = this.epaisseur;
+    ctx.strokeStyle = this.getCouleur();
+    ctx.lineWidth = this.getEpaisseur();
     ctx.beginPath();
-    ctx.rect(this.getInitX(), this.getInitY(), this.getLargeur(),this.getHauteur());
+    ctx.rect(this.getStartX(), this.getStartY(), this.getLargeur(), this.getHauteur());
     ctx.stroke();
-
 }
 
 Line.prototype.paint = function(ctx) {
-    ctx.strokeStyle = this.couleur;
-    ctx.lineWidth = this.epaisseur;
+    ctx.strokeStyle = this.getCouleur();
+    ctx.lineWidth = this.getEpaisseur();
     ctx.beginPath();
-
-    ctx.moveTo(this.getInitX(), this.getInitY());
+    ctx.moveTo(this.getStartX(), this.getStartY());
     ctx.lineTo(this.getEndX(), this.getEndY());
     ctx.stroke();
-
 };
-Ellipse.prototype.paint = function(ctx){
-    ctx.strokeStyle = this.couleur;
-    ctx.lineWidth = this.epaisseur;
-    ctx.beginPath();
-    ctx.ellipse(this.startX,this.startY,this.radiusX,this.radiusY,
-        this.rotation,this.startAngle,this.endAngle);
 
+Ellipse.prototype.paint = function(ctx) {
+    ctx.strokeStyle = this.getCouleur();
+    ctx.lineWidth = this.getEpaisseur();
+    ctx.beginPath();
+    ctx.ellipse(this.getStartX(), this.getStartY(), this.getRadiusX(), this.getRadiusY(),
+        this.getRotation(), this.getStartAngle(), this.getEndAngle());
     ctx.stroke();
 }
+
 
 Drawing.prototype.paint = function(ctx) {
     ctx.fillStyle = '#F0F0F0'; // set canvas' background color
