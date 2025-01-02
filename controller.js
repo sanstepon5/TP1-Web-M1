@@ -33,7 +33,24 @@ function Pencil(ctx, drawing, canvas) {
 	}
 
 	new DnD(canvas, this);
+	this.onInteractionCreatingShapes = function (dnd){
+		if(this.currEditingMode === editingMode.line) {
+			this.currentShape = new Line(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
+				dnd.finalPosDnD_x, dnd.finalPosDnD_y);
+		}
+		else if(this.currEditingMode === editingMode.rect) {
+			this.currentShape = new Rectangle(dnd.initPosDnD_x, dnd.initPosDnD_y, this.currLineWidth, this.currColour,
+				dnd.finalPosDnD_x - dnd.initPosDnD_x, dnd.finalPosDnD_y - dnd.initPosDnD_y);
 
+		}
+		else if(this.currEditingMode === editingMode.ellipse) {
+			this.currentShape = new Ellipse(dnd.initPosDnD_x,dnd.initPosDnD_y, this.currLineWidth, this.currColour,
+				dnd.finalPosDnD_x -dnd.initPosDnD_x, dnd.finalPosDnD_y - dnd.initPosDnD_y,Math.PI / 4, 0 , 2 * Math.PI);
+		}
+		drawing.paint(ctx);
+		this.currentShape.paint(ctx);
+
+	}.bind(this);
 	// Implémentez ici les 3 fonctions onInteractionStart, onInteractionUpdate et onInteractionEnd
 	this.onInteractionStart = function (dnd){
 		if(this.currEditingMode === editingMode.line) {
@@ -50,40 +67,11 @@ function Pencil(ctx, drawing, canvas) {
 	}.bind(this);
 
 	this.onInteractionUpdate = function (dnd){
-		console.log(this.currColour)
-		if(this.currEditingMode === editingMode.line) {
-			this.currentShape = new Line(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
-				dnd.finalPosDnD_x, dnd.finalPosDnD_y);
-		}
-		else if(this.currEditingMode === editingMode.rect) {
-			this.currentShape = new Rectangle(dnd.initPosDnD_x, dnd.initPosDnD_y, this.currLineWidth, this.currColour,
-				dnd.finalPosDnD_x - dnd.initPosDnD_x, dnd.finalPosDnD_y - dnd.initPosDnD_y);
-
-		}
-		else if(this.currEditingMode === editingMode.ellipse) {
-			this.currentShape = new Ellipse(dnd.initPosDnD_x,dnd.initPosDnD_y, this.currLineWidth, this.currColour,
-				dnd.finalPosDnD_x, dnd.finalPosDnD_y,Math.PI / 4, 0 , 2 * Math.PI);
-		}
-		drawing.paint(ctx);
-		this.currentShape.paint(ctx);
+		this.onInteractionCreatingShapes(dnd);
 	}.bind(this);
 
 	this.onInteractionEnd = function (dnd){
-		if(this.currEditingMode === editingMode.line){
-			this.currentShape = new Line(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
-				dnd.finalPosDnD_x, dnd.finalPosDnD_y);
-		}
-		else if (this.currEditingMode === editingMode.rect){
-			this.currentShape = new Rectangle(dnd.initPosDnD_x, dnd.initPosDnD_y,this.currLineWidth, this.currColour,
-				dnd.finalPosDnD_x - dnd.initPosDnD_x,dnd.finalPosDnD_y - dnd.initPosDnD_y);
-		}
-		else if(this.currEditingMode === editingMode.ellipse){
-			this.currentShape = new Ellipse(dnd.initPosDnD_x,dnd.initPosDnD_y, this.currLineWidth, this.currColour,
-				dnd.finalPosDnD_x, dnd.finalPosDnD_y,Math.PI / 4, 0 , 2 * Math.PI);
-		}
-
-		drawing.paint(ctx);
-		this.currentShape.paint(ctx);
+		this.onInteractionCreatingShapes(dnd);
 		let newId = generateUniqueId();
 		drawing.shapeArr.set(newId,this.currentShape);
 
@@ -101,6 +89,7 @@ function remove (drawing,id,ctx,canvas) {
 	drawing.paint(ctx,canvas);//erase the fig
 }
 
+//
 
 //------------------- generating id for the buttons deleting the shapes-----
 
