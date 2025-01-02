@@ -14,5 +14,4 @@ This app made in vanilla JS and HTML5 for a Web Engineering class allows to draw
 canvas using a mouse. It allows undoing actions, changing shape size and color.
 
 ## Known bugs
-To draw an ellipse in a different color, you must first switch to line or rectangle before
-choosing ellipse again to apply the new color
+Ellipse color changing is junky 
